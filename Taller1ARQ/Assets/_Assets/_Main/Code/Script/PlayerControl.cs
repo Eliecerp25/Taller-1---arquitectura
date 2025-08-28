@@ -7,7 +7,7 @@ public class PlayerControl : MonoBehaviour
 [SerializeField]
 private float _fuerzaSalto;
 [SerializeField]
-private Vector2 direccionSalto = new Vector2(100,10);
+private Vector2 direccionSalto = new Vector2();
 void Start()
 {
 
@@ -16,17 +16,17 @@ void Start()
 // Update is called once per frame
 void Update()
 {
-    if (Input.GetKeyDown(KeyCode.D))
+    if (Input.GetKeyDown(KeyCode.RightArrow))
     {
-        _rb2d.AddForce(direccionSalto * _fuerzaSalto);
+        _rb2d.AddForce(new Vector2(100,10 * _fuerzaSalto));
     }
 
-    if (Input.GetKey(KeyCode.A))
+    if (Input.GetKeyDown(KeyCode.LeftArrow))
     {
         _rb2d.AddForce(new Vector2(-100,10 * _fuerzaSalto));
     }
 
-    if (Input.GetKeyDown(KeyCode.W))
+    if (Input.GetKeyDown(KeyCode.Space))
     {
         _rb2d.AddForce(new Vector2(0,10)* _fuerzaSalto);
     }
