@@ -8,12 +8,6 @@ public class PlayerControl : MonoBehaviour
 private float _fuerzaSalto;
 [SerializeField]
 private Vector2 direccionSalto = new Vector2();
-void Start()
-{
-
-}
-
-// Update is called once per frame
 void Update()
 {
     if (Input.GetKeyDown(KeyCode.RightArrow))

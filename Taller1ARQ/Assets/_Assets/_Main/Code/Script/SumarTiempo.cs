@@ -2,21 +2,16 @@ using UnityEngine;
 
 public class SumarTiempo : MonoBehaviour
 {
-    public float tiempoExtra = 10f; // segundos a sumar
+    public Tiempo timer;
+    private float extraTime = 10f;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Player")) // cuando el jugador lo toca
+        if (collision.gameObject.CompareTag("Player"))
         {
-            // Buscar el Timer en la escena
-            Tiempo timer = FindObjectOfType<Tiempo>();
-            if (timer != null)
-            {
-                timer.SumarTiempo(tiempoExtra); // usamos el método correcto
-            }
-
-            // Destruir el objeto para que no se use otra vez
-            Destroy(gameObject);
+            Destroy(this.gameObject);
+            timer.AddTime(extraTime);
         }
     }
 }
+

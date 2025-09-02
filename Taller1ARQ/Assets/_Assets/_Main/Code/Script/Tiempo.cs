@@ -4,31 +4,26 @@ using UnityEngine.SceneManagement;
 
 public class Tiempo : MonoBehaviour
 {
-    public float timeLeft = 60f;
+    private float timeLeft = 120f; // tiempo inicial del contador en segundos
     public TextMeshProUGUI timerText;
-
-    private bool ended = false; // evita que la escena se cargue varias veces
 
     void Update()
     {
-        // Restamos el tiempo
         timeLeft -= Time.deltaTime;
 
-        // Que no baje de 0
-        if (timeLeft <= 0 && !ended)
+        if (timeLeft <= 0)
         {
-            timeLeft = 0;
-            ended = true;
-            SceneManager.LoadScene("Taller"); // asegúrate de que "Taller" esté en Build Settings
+            SceneManager.LoadScene("Taller"); // vuelve a cargar la escena
         }
 
-        // Mostramos el tiempo en pantalla (segundos enteros)
-        timerText.text = "TIEMPO: " + Mathf.Ceil(timeLeft).ToString();
+        timerText.text = "TIEMPO: " + Mathf.Ceil(timeLeft).ToString(); // muestra en pantalla el tiempo restante
     }
 
-    // 👉 Método correcto para sumar tiempo (puedes llamarlo desde otro script)
-    public void SumarTiempo(float segundos)
+    public void AddTime(float extraTime)
     {
-        timeLeft += segundos;
+        timeLeft += extraTime;
     }
 }
+
+
+

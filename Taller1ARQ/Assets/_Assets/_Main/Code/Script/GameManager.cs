@@ -1,8 +1,6 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Video;
 using System.Collections;
 
 public class GameManager : MonoBehaviour
@@ -61,31 +59,19 @@ public class GameManager : MonoBehaviour
         StartCoroutine(MostrarMensajes());
     }
 
-    private IEnumerator MostrarMensajes()
+    private IEnumerator MostrarMensajes() //IEnumerator para darle funcionalidad a la corotina y mostrar mensaje en un determinado tiempo y momento
     {
         // Primer mensaje
-        textoLlave.text = "Ya tienes la llave.\nCorre a abrir la puerta!!!";
+        textoLlave.text = "Ya tienes la llave.\nBusca la puerta...";
         yield return new WaitForSeconds(3f);
 
         // Segundo mensaje
-        textoLlave.text = "Busca la puerta...";
+        textoLlave.text = "Correeee, se te acaba el tiempo!!!";
         yield return new WaitForSeconds(3f);
 
-        // Luego lo dejas vacío (opcional)
+        // lo dejas vacío (opcional)
         textoLlave.text = "";
     }
 
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

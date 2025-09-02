@@ -3,13 +3,13 @@ using System.Collections; // necesario para IEnumerator
 
 public class Puerta : MonoBehaviour
 {
-    public GameManager gameManager; // referencia al GameManager
+    public GameManager gameManager;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            if (gameManager.KeyActive) // si el jugador tiene la llave
+            if (gameManager.KeyActive)  // si el jugador tiene la llave
             {
                 gameManager.textoGame.text = "¡¡¡GANASTE!!!";
                 Time.timeScale = 0f; // pausa el juego
@@ -21,21 +21,10 @@ public class Puerta : MonoBehaviour
         }
     }
 
-    private IEnumerator MostrarMensajeTemporal(string mensaje, float duracion)
+    private IEnumerator MostrarMensajeTemporal(string mensaje, float duracion)//IEnumerator para darle funcionalidad a la corotina y mostrar mensaje en un determinado tiempo y momento
     {
         gameManager.textoGame.text = mensaje;
-        yield return new WaitForSeconds(duracion);
-        gameManager.textoGame.text = ""; // ⚡ lo borramos después del tiempo
-    }
-
-void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        yield return new WaitForSeconds(duracion);// yield return determina el tiempo de espera del mensaje
+        gameManager.textoGame.text = ""; // sirve para borrar después del tiempo
     }
 }
