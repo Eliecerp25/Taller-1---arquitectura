@@ -3,6 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,7 +18,14 @@ public class GameManager : MonoBehaviour
     private TMP_Text textoVida;
 
     [SerializeField]
+    private TMP_Text textoLlave;
+
+    public TMP_Text textoGame;
+
+    [SerializeField]
     private GameObject Obstaculo;
+
+    public bool KeyActive = false;
 
     public void SumarPuntos(int cantidad)
     {
@@ -46,6 +54,27 @@ public class GameManager : MonoBehaviour
         vida += cantidad;
         textoVida.text = "Vida: " + vida;
     }
+
+    public void KeyHolder(bool keyTrue)
+    {
+        KeyActive = keyTrue;
+        StartCoroutine(MostrarMensajes());
+    }
+
+    private IEnumerator MostrarMensajes()
+    {
+        // Primer mensaje
+        textoLlave.text = "Ya tienes la llave.\nCorre a abrir la puerta!!!";
+        yield return new WaitForSeconds(3f);
+
+        // Segundo mensaje
+        textoLlave.text = "Busca la puerta...";
+        yield return new WaitForSeconds(3f);
+
+        // Luego lo dejas vacío (opcional)
+        textoLlave.text = "";
+    }
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
