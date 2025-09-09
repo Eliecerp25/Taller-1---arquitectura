@@ -10579,7 +10579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vida: 3
-  puntos: 0
+  puntos: 9
   textoPuntos: {fileID: 45262585}
   textoVida: {fileID: 158529064}
   textoLlave: {fileID: 1695120360}

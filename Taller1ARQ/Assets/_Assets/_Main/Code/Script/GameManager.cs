@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
     public void SumarPuntos(int cantidad)
     {
         puntos += cantidad;
-        textoPuntos.text = "Puntos: " + puntos;
+        ActualizarUI("textoPuntos");
 
-        if (puntos==10)
+        if (puntos>=10)
         {
             Destroy(Obstaculo);
         }
@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     public void RestarVidas(int cantidad)
     {
         vida -= cantidad;
-        textoVida.text = "Vida: " + vida;
+        ActualizarUI("textoVida");
 
         if (vida == 0)
         {
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
     {
         vida += cantidad;
         textoVida.text = "Vida: " + vida;
+        ActualizarUI("textoVida");
     }
 
     public void KeyHolder(bool keyTrue)
@@ -69,8 +70,44 @@ public class GameManager : MonoBehaviour
         textoLlave.text = "Correeee, se te acaba el tiempo!!!";
         yield return new WaitForSeconds(3f);
 
-        // lo dejas vacío (opcional)
+        // lo deja vacío (opcional)
         textoLlave.text = "";
+    }
+
+    public void ActualizarUI(string texto)
+    {
+        switch (texto) 
+        {
+            case "textoVida":
+                textoVida.text = "Vida: " + vida;
+                break;
+
+            case "textoPuntos":
+                textoPuntos.text = "Puntos: " + puntos;
+                break;
+
+            case "textoLlave":
+                StartCoroutine(MostrarMensajes());
+                break;
+        }
+    }
+
+    public void EstadoDelJuego(string estado)
+    {
+        switch (estado) 
+        {
+            case "Ganaste":
+                break;
+
+            case "Perdiste":
+                break;
+
+            case "Pausa":
+                break;
+
+            case "Jugando":
+                break;
+        }
     }
 
 
