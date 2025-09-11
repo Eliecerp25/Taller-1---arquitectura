@@ -103,6 +103,11 @@ public class GameManager : MonoBehaviour
                 break;
 
             case "Pausa":
+                Time.timeScale = 0;
+                break;
+
+            case "Reanudar":
+                Time.timeScale = 1;
                 break;
 
             case "Jugando":
