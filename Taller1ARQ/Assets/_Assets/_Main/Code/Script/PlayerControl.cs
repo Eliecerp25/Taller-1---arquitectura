@@ -8,6 +8,7 @@ public class PlayerControl : MonoBehaviour
 private float _fuerzaSalto;
 [SerializeField]
 private Vector2 direccionSalto = new Vector2();
+
 void Update()
 {
     if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -24,5 +25,9 @@ void Update()
     {
         _rb2d.AddForce(new Vector2(0,10)* _fuerzaSalto);
     }
-}
+
+
+
+
+    }
 }

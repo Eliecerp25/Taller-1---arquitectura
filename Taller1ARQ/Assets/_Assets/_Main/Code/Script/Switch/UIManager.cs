@@ -1,74 +1,63 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text textIntroduccion;
-    [SerializeField] private TMP_InputField InputField;
-    [SerializeField] private TMP_InputField InputFieldnombre;
+    [SerializeField]
+    private TMP_Text textoPuntos;
 
-    private string nombre;
-    private int edad;
-    //si mi jugador es menor de 12 años es un niño
-    //si mi jugador es mayor de 12 años pero menor a 18 es un adolescente
-    // si mi jugador es mayor de 18 años pero menor a 25 es un adulto joven
-    //si mi jugador es mayor de 25 años pero menor a 60 es un adulto
-    //si mi jugador es mayor de 60 años es un adulto mayor
+    [SerializeField]
+    private TMP_Text textoVida;
 
+    [SerializeField]
+    private TMP_Text textoLlave;
 
-    private void Start()
+    public TMP_Text textoGame;
+
+    [SerializeField]
+    private GameManager gameManager;
+
+    public void ActualizarUI(string texto)
     {
-        textIntroduccion.text = "Introduce tu edad";
-    }
-
-    public void CalcularGrupo()
-    {
-        edad = int.Parse(InputField.text);
-
-        switch (edad)
+        switch (texto)
         {
-            case 20:
-                textIntroduccion.text=("¡Tienes 20 años!");
+            case "textoVida":
+                textoVida.text = "Vida: " + gameManager.actVida;
+
+                break;
+
+            case "textoPuntos":
+                textoPuntos.text = "Puntos: " + gameManager.actPuntos;
+                break;
+
+            case "textoLlave":
+                StartCoroutine(MostrarMensajes());
                 break;
         }
-
     }
-}
 
 
-
-
-
-
-        /*
-        if (edad <= 12 ) 
-        {
-            Debug.Log("Eres un niño");
-        }
-        else if (edad > 12 && edad<18 ) 
-        {
-            Debug.Log("Eres un adolescente");
-        }
-        else if (edad >= 18 && edad < 25)
-        {
-            Debug.Log("Eres un adulto joven");
-        }
-        else if (edad >= 25 && edad < 60)
-        {
-            Debug.Log("Eres un adulto");
-        }
-        else if (edad >= 60)
-        {
-            Debug.Log("Eres un adulto mayor");
-        }
-    }
-    
-
-    // Update is called once per frame
-    void Update()
+    private IEnumerator MostrarMensajes() //IEnumerator para darle funcionalidad a la corotina y mostrar mensaje en un determinado tiempo y momento
     {
-        
+        // Primer mensaje
+        textoLlave.text = "Ya tienes la llave.\nBusca la puerta...";
+        yield return new WaitForSeconds(3f);
+
+        // Segundo mensaje
+        textoLlave.text = "Correeee, se te acaba el tiempo!!!";
+        yield return new WaitForSeconds(3f);
+
+        // lo deja vacío (opcional)
+        textoLlave.text = "";
     }
 }
-*/
+
+
+
+
+
+
+        
