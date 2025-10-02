@@ -1,7 +1,5 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,10 +27,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     private bool KeyActive = false;
+    public bool actKey
+    {
+        get { return KeyActive; }
+        set { }
+    }
 
     [SerializeField]
     private UIManager uiManager;
-
 
     public void SumarPuntos(int cantidad)
     {
@@ -52,7 +54,7 @@ public class GameManager : MonoBehaviour
 
         if (vida == 0)
         {
-            SceneManager.LoadScene("Taller");
+            EstadoDelJuego("Perdiste");
         }
     }
 
@@ -65,7 +67,7 @@ public class GameManager : MonoBehaviour
     public void KeyHolder(bool keyTrue)
     {
         KeyActive = keyTrue;
-       // StartCoroutine(MostrarMensajes());
+        uiManager.ActualizarUI("textoLlave");
     }
 
     public void EstadoDelJuego(string estado)
@@ -73,9 +75,11 @@ public class GameManager : MonoBehaviour
         switch (estado) 
         {
             case "Ganaste":
+                SceneManager.LoadScene(2);
                 break;
 
             case "Perdiste":
+                SceneManager.LoadScene(3);
                 break;
 
             case "Pausa":

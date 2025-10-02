@@ -2643,6 +2643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1469926334}
+  uiManager: {fileID: 664708869}
 --- !u!1 &509110480
 GameObject:
   m_ObjectHideFlags: 0
@@ -8259,7 +8260,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 687.9258, y: 115.78586}
+  m_AnchoredPosition: {x: 687.9258, y: 259}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &848029577
@@ -8291,7 +8292,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4292591872
   m_fontColor: {r: 0, g: 0.7553486, b: 0.8584906, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -8309,8 +8310,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 51.37
+  m_fontSizeBase: 51.37
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -32666,11 +32667,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6582747259845169099, guid: a3879484d58e7e84aae7907b2f321e29, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -44.48
+      value: -9.18
       objectReference: {fileID: 0}
     - target: {fileID: 6582747259845169099, guid: a3879484d58e7e84aae7907b2f321e29, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.95
+      value: 22.86
       objectReference: {fileID: 0}
     - target: {fileID: 6582747259845169099, guid: a3879484d58e7e84aae7907b2f321e29, type: 3}
       propertyPath: m_LocalPosition.z

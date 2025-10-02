@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 using System.Collections;
 
@@ -15,7 +13,8 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private TMP_Text textoLlave;
 
-    public TMP_Text textoGame;
+    [SerializeField]
+    private TMP_Text textoGame;
 
     [SerializeField]
     private GameManager gameManager;
@@ -36,6 +35,10 @@ public class UIManager : MonoBehaviour
             case "textoLlave":
                 StartCoroutine(MostrarMensajes());
                 break;
+
+            case "TextoNoLLave":
+                StartCoroutine(MostrarMensajeNoLave("Aún no tienes la llave ;(", 3f));
+                break;
         }
     }
 
@@ -52,6 +55,13 @@ public class UIManager : MonoBehaviour
 
         // lo deja vacío (opcional)
         textoLlave.text = "";
+    }
+
+    public IEnumerator MostrarMensajeNoLave(string mensaje, float duracion)//IEnumerator para darle funcionalidad a la corotina y mostrar mensaje en un determinado tiempo y momento
+    {
+        textoGame.text = mensaje;
+        yield return new WaitForSeconds(duracion);// yield return determina el tiempo de espera del mensaje
+        textoGame.text = ""; // sirve para borrar después del tiempo
     }
 }
 
