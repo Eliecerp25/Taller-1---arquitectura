@@ -3,6 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private UIManager uiManager;
+
+    [SerializeField]
+    private GameObject Obstaculo;
 
     [SerializeField]
     private int vida;
@@ -17,13 +22,9 @@ public class GameManager : MonoBehaviour
 
     public int actPuntos
     {
-        get { return vida; }
+        get { return puntos; }
         set { }
     }
-
-
-    [SerializeField]
-    private GameObject Obstaculo;
 
     [SerializeField]
     private bool KeyActive = false;
@@ -32,19 +33,53 @@ public class GameManager : MonoBehaviour
         get { return KeyActive; }
         set { }
     }
-
     [SerializeField]
-    private UIManager uiManager;
+    private bool juegoPausado = false; 
+
+    public void Start()
+    {
+        uiManager.ActualizarUI("textoVida");
+        uiManager.ActualizarUI("textoPuntos");
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (juegoPausado)
+            {
+                EstadoDelJuego("Reanudar");
+                uiManager.ActualizarUI("ReanudarUI"); 
+                juegoPausado = false;
+            }
+            else
+            {
+                EstadoDelJuego("Pausa");
+                uiManager.ActualizarUI("PausaUI");
+                juegoPausado = true;
+            }
+        }
+    }
+
 
     public void SumarPuntos(int cantidad)
     {
         puntos += cantidad;
         uiManager.ActualizarUI("textoPuntos");
 
-        if (puntos>=10)
+        if (actPuntos>=10)
         {
             Destroy(Obstaculo);
         }
+    }
+    public void SumarVida(int cantidad)
+    {
+        if (vida < 5)
+        {
+            vida += cantidad;
+            uiManager.ActualizarUI("textoVida");
+        }
+
     }
 
     public void RestarVidas(int cantidad)
@@ -56,12 +91,6 @@ public class GameManager : MonoBehaviour
         {
             EstadoDelJuego("Perdiste");
         }
-    }
-
-    public void SumarVida(int cantidad)
-    {
-        vida += cantidad;
-        uiManager.ActualizarUI("textoVida");
     }
 
     public void KeyHolder(bool keyTrue)
@@ -88,6 +117,11 @@ public class GameManager : MonoBehaviour
 
             case "Reanudar":
                 Time.timeScale = 1;
+                break;
+
+            case "Reiniciar":
+                Time.timeScale = 1;
+                SceneManager.LoadScene(1);
                 break;
 
             case "Jugando":

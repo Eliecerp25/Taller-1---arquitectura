@@ -5,6 +5,9 @@ using System.Collections;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
+    private GameObject CanvaPausa;
+
+    [SerializeField]
     private TMP_Text textoPuntos;
 
     [SerializeField]
@@ -24,12 +27,12 @@ public class UIManager : MonoBehaviour
         switch (texto)
         {
             case "textoVida":
-                textoVida.text = "Vida: " + gameManager.actVida;
+                textoVida.text = "VIDA: " + gameManager.actVida;
 
                 break;
 
             case "textoPuntos":
-                textoPuntos.text = "Puntos: " + gameManager.actPuntos;
+                textoPuntos.text = "PUNTOS: " + gameManager.actPuntos;
                 break;
 
             case "textoLlave":
@@ -38,6 +41,14 @@ public class UIManager : MonoBehaviour
 
             case "TextoNoLLave":
                 StartCoroutine(MostrarMensajeNoLave("Aún no tienes la llave ;(", 3f));
+                break;
+
+            case "PausaUI":
+                CanvaPausa.SetActive(true);
+                break;
+
+            case "ReanudarUI":
+                CanvaPausa.SetActive(false);
                 break;
         }
     }
@@ -64,10 +75,4 @@ public class UIManager : MonoBehaviour
         textoGame.text = ""; // sirve para borrar después del tiempo
     }
 }
-
-
-
-
-
-
         

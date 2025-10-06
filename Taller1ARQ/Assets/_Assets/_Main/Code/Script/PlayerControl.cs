@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 { 
 [SerializeField]
-    private Rigidbody2D _rb2d;
+private Rigidbody2D _rb2d;
 [SerializeField]
 private float _fuerzaSalto;
 [SerializeField]
