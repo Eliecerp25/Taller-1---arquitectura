@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class SumarTiempo : MonoBehaviour
 {
-    public Tiempo timer;
+    public GameManager gameManager;
+
+    [SerializeField]
     private float extraTime = 10f;
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -10,7 +12,7 @@ public class SumarTiempo : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(this.gameObject);
-            timer.AddTime(extraTime);
+            gameManager.AddTime(extraTime);
         }
     }
 }

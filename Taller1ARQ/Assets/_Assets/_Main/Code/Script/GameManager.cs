@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -33,17 +34,31 @@ public class GameManager : MonoBehaviour
         get { return KeyActive; }
         set { }
     }
+
     [SerializeField]
-    private bool juegoPausado = false; 
+    private bool juegoPausado = false;
+
+    [SerializeField]
+    private float timeLeft = 120f;
+
+    public float actTimeLeft
+    {
+        get { return timeLeft; }
+        set { }
+    }
+
+
 
     public void Start()
     {
         uiManager.ActualizarUI("textoVida");
         uiManager.ActualizarUI("textoPuntos");
+        uiManager.ActualizarUI("TiempoUI");
     }
 
     public void Update()
     {
+        //Funcion ESCAPE
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (juegoPausado)
@@ -59,6 +74,17 @@ public class GameManager : MonoBehaviour
                 juegoPausado = true;
             }
         }
+
+        //Tiempo
+        timeLeft -= Time.deltaTime;
+        uiManager.ActualizarUI("TiempoUI");
+
+
+        if (timeLeft <= 0)
+        {
+            EstadoDelJuego("Perdiste");
+        }
+
     }
 
 
@@ -93,6 +119,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AddTime(float extraTime)
+    {
+        timeLeft += extraTime;
+    }
+
     public void KeyHolder(bool keyTrue)
     {
         KeyActive = keyTrue;
@@ -124,8 +155,6 @@ public class GameManager : MonoBehaviour
                 SceneManager.LoadScene(1);
                 break;
 
-            case "Jugando":
-                break;
         }
     }
 

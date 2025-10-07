@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 
@@ -22,13 +23,25 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameManager gameManager;
 
+    public TextMeshProUGUI timerText;
+
+
+    [SerializeField] 
+    private Image[] corazones;
+
+    [SerializeField] 
+    private Sprite VidaSprite;
+
+    [SerializeField] 
+    private Sprite NoVidaSprite;
+
+
     public void ActualizarUI(string texto)
     {
         switch (texto)
         {
             case "textoVida":
-                textoVida.text = "VIDA: " + gameManager.actVida;
-
+                ActualizarCorazones(gameManager.actVida);
                 break;
 
             case "textoPuntos":
@@ -50,29 +63,48 @@ public class UIManager : MonoBehaviour
             case "ReanudarUI":
                 CanvaPausa.SetActive(false);
                 break;
+
+            case "TiempoUI":
+               timerText.text = "TIEMPO: " + Mathf.Ceil(gameManager.actTimeLeft).ToString();
+                break;
+
+        }
+    }
+
+    private void ActualizarCorazones(int vidas)
+    {
+        for (int i = 0; i < corazones.Length; i++)
+        {
+            if (i < vidas)
+            {
+                corazones[i].sprite = VidaSprite;
+            }
+            else
+            {
+                corazones[i].sprite = NoVidaSprite;
+            }
         }
     }
 
 
-    private IEnumerator MostrarMensajes() //IEnumerator para darle funcionalidad a la corotina y mostrar mensaje en un determinado tiempo y momento
-    {
-        // Primer mensaje
+    private IEnumerator MostrarMensajes()
+    { 
         textoLlave.text = "Ya tienes la llave.\nBusca la puerta...";
         yield return new WaitForSeconds(3f);
 
-        // Segundo mensaje
         textoLlave.text = "Correeee, se te acaba el tiempo!!!";
         yield return new WaitForSeconds(3f);
 
-        // lo deja vacío (opcional)
         textoLlave.text = "";
     }
 
-    public IEnumerator MostrarMensajeNoLave(string mensaje, float duracion)//IEnumerator para darle funcionalidad a la corotina y mostrar mensaje en un determinado tiempo y momento
+    
+
+    public IEnumerator MostrarMensajeNoLave(string mensaje, float duracion)
     {
         textoGame.text = mensaje;
-        yield return new WaitForSeconds(duracion);// yield return determina el tiempo de espera del mensaje
-        textoGame.text = ""; // sirve para borrar después del tiempo
+        yield return new WaitForSeconds(duracion);
+        textoGame.text = ""; 
     }
 }
         
